@@ -1,0 +1,42 @@
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+ 
+        
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #d52121;        
+            padding: 0 24px;
+        }
+ 
+        .logo {
+            color: #fff;
+            font-size: 22px;
+            font-weight: bold;
+        }
+ 
+    
+        .menu {
+            display: flex;
+            list-style: none;   
+            margin: 0;
+            padding: 0;
+        }
+ 
+        
+        .menu li a {
+            display: block;
+            color: #fff;
+            text-decoration: none;  
+            padding: 18px 18px;
+        }
+ 
+        
+        .menu li a:hover {
+            background: #901a1a;
+        }
+   
