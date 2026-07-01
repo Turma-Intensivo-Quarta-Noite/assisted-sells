@@ -1,22 +1,164 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bebidas</title>
+  <link rel="stylesheet" href="bebidas.css">
 </head>
 <body>
-    <h1>Bebidas</h1>
-    <p>Lista de bebidas disponíveis.</p>
-    <ul>
-        <li>Água</li>        
-        <li>Refrigerantes</li>
-        <li>Sucos</li>
-        <li>Cervejas</li>
-        <li>Vinhos</li>
-        <li>Coquetéis</li>
-        <li>Chás Gelados</li>
-        <li>Cafés Gelado</li>
-    </ul>
+  <h1>Bebidas</h1>
+  <p class="subtitulo">Clique em uma categoria para ver as opções disponíveis.</p>
+  <div id="lista"></div>
+
+  <script>
+    const dados = [
+      {
+        nome: "Água", desc: "Hidratação essencial",
+        img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=96&h=96&fit=crop",
+        tag: "Sem açúcar", tagBg: "#E6F1FB", tagColor: "#0C447C",
+        subs: [
+          { nome: "Água mineral natural", img: "https://images.unsplash.com/photo-1559839914-17aae19cec71?w=72&h=72&fit=crop" },
+          { nome: "Água com gás", img: "https://images.unsplash.com/photo-1606168094336-48f205fd6f1b?w=72&h=72&fit=crop" },
+          { nome: "Água saborizada", img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=72&h=72&fit=crop" },
+          { nome: "Água de coco", img: "https://images.unsplash.com/photo-1615485291234-9d694218aeb3?w=72&h=72&fit=crop" },
+        ]
+      },
+      {
+        nome: "Refrigerantes", desc: "Gaseificados e refrescantes",
+        img: "https://images.unsplash.com/photo-1581006852262-e4307cf6283a?w=96&h=96&fit=crop",
+        tag: "Gaseificado", tagBg: "#FAEEDA", tagColor: "#633806",
+        subs: [
+          { nome: "Cola", img: "https://images.unsplash.com/photo-1527960471264-932f39eb5846?w=72&h=72&fit=crop" },
+          { nome: "Laranja", img: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=72&h=72&fit=crop" },
+          { nome: "Limão", img: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=72&h=72&fit=crop" },
+          { nome: "Guaraná", img: "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=72&h=72&fit=crop" },
+          { nome: "Zero açúcar", img: "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=72&h=72&fit=crop" },
+        ]
+      },
+      {
+        nome: "Sucos", desc: "Naturais e industrializados",
+        img: "https://images.unsplash.com/photo-1546173159-315724a31696?w=96&h=96&fit=crop",
+        tag: "Natural", tagBg: "#EAF3DE", tagColor: "#27500A",
+        subs: [
+          { nome: "Laranja", img: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=72&h=72&fit=crop" },
+          { nome: "Maracujá", img: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=72&h=72&fit=crop" },
+          { nome: "Abacaxi com hortelã", img: "https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4?w=72&h=72&fit=crop" },
+          { nome: "Uva", img: "https://images.unsplash.com/photo-1599942761052-73d7eddb9453?w=72&h=72&fit=crop" },
+        ]
+      },
+      {
+        nome: "Cervejas", desc: "Artesanais e industriais",
+        img: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=96&h=96&fit=crop",
+        tag: "Alcoólico", tagBg: "#FAECE7", tagColor: "#712B13",
+        subs: [
+          { nome: "Pilsen / Lager", img: "https://images.unsplash.com/photo-1608270586620-248524c67de9?w=72&h=72&fit=crop" },
+          { nome: "IPA", img: "https://images.unsplash.com/photo-1584225064785-c62a8b43d148?w=72&h=72&fit=crop" },
+          { nome: "Weiss (trigo)", img: "https://images.unsplash.com/photo-1570598912132-0ba1dc952b7d?w=72&h=72&fit=crop" },
+          { nome: "Stout / Porter", img: "https://images.unsplash.com/photo-1551887196-72e32bfc7bf3?w=72&h=72&fit=crop" },
+        ]
+      },
+      {
+        nome: "Vinhos", desc: "Tintos, brancos e rosés",
+        img: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=96&h=96&fit=crop",
+        tag: "Alcoólico", tagBg: "#FAECE7", tagColor: "#712B13",
+        subs: [
+          { nome: "Tinto seco", img: "https://images.unsplash.com/photo-1506377872008-6645d9d29ef7?w=72&h=72&fit=crop" },
+          { nome: "Branco suave", img: "https://images.unsplash.com/photo-1474722883778-792e7990302f?w=72&h=72&fit=crop" },
+          { nome: "Rosé", img: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=72&h=72&fit=crop" },
+          { nome: "Espumante", img: "https://images.unsplash.com/photo-1548032885-b5e38734688a?w=72&h=72&fit=crop" },
+        ]
+      },
+      {
+        nome: "Coquetéis", desc: "Clássicos e autorais",
+        img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=96&h=96&fit=crop",
+        tag: "Alcoólico", tagBg: "#FAECE7", tagColor: "#712B13",
+        subs: [
+          { nome: "Caipirinha", img: "https://images.unsplash.com/photo-1541014741259-de529411b96a?w=72&h=72&fit=crop" },
+          { nome: "Mojito", img: "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=72&h=72&fit=crop" },
+          { nome: "Margarita", img: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=72&h=72&fit=crop" },
+          { nome: "Sem álcool (mocktail)", img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=72&h=72&fit=crop" },
+        ]
+      },
+      {
+        nome: "Chás Gelados", desc: "Tradicionais e naturais",
+        img: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=96&h=96&fit=crop",
+        tag: "Sem álcool", tagBg: "#E1F5EE", tagColor: "#085041",
+        subs: [
+          { nome: "Chá preto com limão", img: "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=72&h=72&fit=crop" },
+          { nome: "Chá verde", img: "https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?w=72&h=72&fit=crop" },
+          { nome: "Hibisco gelado", img: "https://images.unsplash.com/photo-1616347900059-dcb5aa2c7e73?w=72&h=72&fit=crop" },
+          { nome: "Kombucha", img: "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=72&h=72&fit=crop" },
+        ]
+      },
+      {
+        nome: "Cafés Gelados", desc: "Refrescantes e energizantes",
+        img: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=96&h=96&fit=crop",
+        tag: "Sem álcool", tagBg: "#E1F5EE", tagColor: "#085041",
+        subs: [
+          { nome: "Cold brew", img: "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=72&h=72&fit=crop" },
+          { nome: "Frappuccino", img: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=72&h=72&fit=crop" },
+          { nome: "Café com leite gelado", img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=72&h=72&fit=crop" },
+          { nome: "Espresso tônica", img: "https://images.unsplash.com/photo-1509785307050-d4066910ec1e?w=72&h=72&fit=crop" },
+        ]
+      },
+    ];
+
+    const lista = document.getElementById('lista');
+
+    dados.forEach(cat => {
+      const div = document.createElement('div');
+      div.className = 'categoria';
+
+      const header = document.createElement('div');
+      header.className = 'cat-header';
+
+      const img = document.createElement('img');
+      img.className = 'cat-img';
+      img.src = cat.img;
+      img.alt = cat.nome;
+
+      const info = document.createElement('div');
+      info.className = 'cat-info';
+      info.innerHTML = `<div class="cat-nome">${cat.nome}</div><div class="cat-desc">${cat.desc}</div>`;
+
+      const tag = document.createElement('span');
+      tag.className = 'cat-tag';
+      tag.textContent = cat.tag;
+      tag.style.background = cat.tagBg;
+      tag.style.color = cat.tagColor;
+
+      const chev = document.createElement('span');
+      chev.className = 'chevron';
+      chev.innerHTML = '&#8964;';
+
+      header.append(img, info, tag, chev);
+
+      const subs = document.createElement('div');
+      subs.className = 'subitens';
+
+      cat.subs.forEach(sub => {
+        const subDiv = document.createElement('div');
+        subDiv.className = 'subitem';
+        const sImg = document.createElement('img');
+        sImg.className = 'sub-img';
+        sImg.src = sub.img;
+        sImg.alt = sub.nome;
+        const sNome = document.createElement('span');
+        sNome.className = 'sub-nome';
+        sNome.textContent = sub.nome;
+        subDiv.append(sImg, sNome);
+        subs.appendChild(subDiv);
+      });
+
+      header.addEventListener('click', () => {
+        const aberto = subs.classList.toggle('aberto');
+        chev.classList.toggle('aberto', aberto);
+      });
+
+      div.append(header, subs);
+      lista.appendChild(div);
+    });
+  </script>
 </body>
 </html>
